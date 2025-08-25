@@ -2,7 +2,7 @@ import { assertEquals } from "@std/assert";
 import { randomIntegerBetween } from "@std/random";
 import { add } from "./lib.ts";
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -11,7 +11,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -20,7 +20,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -29,7 +29,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -38,7 +38,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -47,7 +47,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -56,7 +56,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -65,7 +65,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -74,7 +74,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
@@ -83,7 +83,7 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   Deno.test(function addTest() {
     const a = randomIntegerBetween(-10000000, 10000000);
     const b = randomIntegerBetween(-10000000, 10000000);
