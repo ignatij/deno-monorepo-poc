@@ -1,0 +1,8 @@
+{
+  "workspace": ["./packages/shared/*", "./packages/apps/*"],
+  "tasks": {},
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1"
+  },
+  "nodeModulesDir": "auto"
+}

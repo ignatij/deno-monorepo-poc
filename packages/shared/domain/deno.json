@@ -1,0 +1,11 @@
+{
+  "name": "@deno-monorepo-poc/domain",
+  "version": "0.1.0",
+  "exports": "./lib.ts",
+  "tasks": {
+    "dev": "deno run --watch lib.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1"
+  }
+}
