@@ -3,6 +3,7 @@
   "specifiers": {
     "jsr:@std/assert@1": "1.0.14",
     "jsr:@std/internal@^1.0.10": "1.0.10",
+    "jsr:@std/random@~0.1.2": "0.1.2",
     "npm:@eslint/js@^9.33.0": "9.34.0",
     "npm:@types/react-dom@^19.1.7": "19.1.7_@types+react@19.1.11",
     "npm:@types/react@^19.1.10": "19.1.11",
@@ -28,6 +29,9 @@
     },
     "@std/internal@1.0.10": {
       "integrity": "e3be62ce42cab0e177c27698e5d9800122f67b766a0bea6ca4867886cbde8cf7"
+    },
+    "@std/random@0.1.2": {
+      "integrity": "21e28f39dcc72d522bb0d2bc13586567d6044c86ee77a0056fcde0e13758c3ee"
     }
   },
   "npm": {
@@ -1744,7 +1748,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/assert@1"
+      "jsr:@std/assert@1",
+      "jsr:@std/random@~0.1.2"
     ],
     "members": {
       "packages/apps/express": {
