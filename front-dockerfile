@@ -1,0 +1,18 @@
+# Stage 1 : build dependencies with Deno
+FROM denoland/deno:alpine AS deno-build
+WORKDIR /domain
+COPY packages/shared/domain .
+RUN deno bundle lib.ts > lib.js
+
+# Stage 2 : build React with Node
+FROM node:20-alpine AS react-build
+WORKDIR /app/packages/apps/front
+COPY packages/apps/front/package*.json .
+RUN npm ci
+COPY packages/apps/front/ .
+COPY --from=deno-build /domain/lib.js /app/packages/shared/domain/lib.js
+RUN npm run build
+
+# Stage 3 : runtime
+FROM nginx:alpine
+COPY --from=react-build /app/dist /usr/share/nginx/html
