@@ -36,5 +36,5 @@ jobs:
 
       - name: Docker build
         run: |
-          docker build -f modular-monolith-dockerfile --platform linux/amd64 -t modular-monolith:latest .
-          # docker build -f front-dockerfile --platform linux/amd64 -t front:latest .
+          docker build -f Dockerfile.modular-monolith --platform linux/amd64 -t modular-monolith:latest .
+          docker build -f Dockerfile.front --platform linux/amd64 -t front:latest .
