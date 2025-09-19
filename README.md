@@ -18,21 +18,11 @@
 
 ## Working within a specific package
 
+e.g.:
+
 ```
 cd packages/shared/domain
 deno task dev
-```
-
-```
-cd packages/apps/modular-monolith
-deno task dev
-```
-
-but
-
-```
-cd packages/apps/front
-npm run dev
 ```
 
 ## Importing a package within another
@@ -53,21 +43,37 @@ Import it from `packages/apps/modular-monolith/main.ts`:
 import { add } from "@deno-monorepo-poc/domain";
 ```
 
-## Running commands across workspaces
+## Building a React application
 
-### Native scripts
+`build` doesn't make sense for most packages (libraries, Express application etc.), since TypeScript is native in Deno. However, it does for React applications:
 
+Requires [`deno-vite-plugin`](https://github.com/denoland/deno-vite-plugin)
+
+```typescript
+// packages/apps/front/vite.config.ts
+import { defineConfig } from "vite";
+import deno from "@deno/vite-plugin";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react(), deno()],
+});
 ```
-deno test
-```
 
-```
-deno lint
-```
+and
 
-### Non-native scripts, e.g. build
-
-`build` doesn't make sense for most packages (libraries, Express application etc.), since TypeScript is native. However, `build` makes sense for React applications:
+```json
+// packages/apps/front/tsconfig.app.json
+{
+  "compilerOptions": {
+    // ...
+    "paths": {
+      "@deno-monorepo-poc/domain": ["../../shared/domain/lib.ts"]
+    }
+  },
+  "include": ["src"]
+}
+```
 
 ```
 cd packages/apps/front
@@ -76,45 +82,9 @@ deno task build
 
 ## Containerization
 
-### modular-monolith
-
-Example of Full Workspace Containerization (unoptimized) with `packages/apps/modular-monolith` (uses `packages/shared/domain`):
-
-Dockerfile:
-
-```
-FROM denoland/deno:alpine AS builder
-WORKDIR /app
-COPY deno.json .
-COPY packages/apps/modular-monolith/ ./packages/apps/modular-monolith/
-COPY packages/shared/domain/ ./packages/shared/domain/
-COPY packages/shared/utils/ ./packages/shared/utils/
-WORKDIR /app/packages/apps/modular-monolith
-RUN deno cache main.ts
-
-FROM denoland/deno:alpine
-WORKDIR /app
-COPY --from=builder /app .
-WORKDIR /app/packages/apps/modular-monolith
-EXPOSE 8000
-CMD ["deno", "run", "--allow-net", "--allow-env", "main.ts"]
-```
-
-From workspace root:
-
 ```
 docker build -f Dockerfile.modular-monolith -t modular-monolith:latest .
-```
-
-### front
-
-```
-
-```
-
-```
 docker build -f Dockerfile.front -t front:latest .
-docker run front:latest -p 8080:80
 ```
 
 ## Official documentation
