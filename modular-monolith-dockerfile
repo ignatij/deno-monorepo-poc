@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine AS builder
+FROM denoland/deno:alpine
 WORKDIR /app
 COPY deno.json .
 COPY packages/apps/modular-monolith/ ./packages/apps/modular-monolith/
@@ -6,10 +6,5 @@ COPY packages/shared/domain/ ./packages/shared/domain/
 COPY packages/shared/utils/ ./packages/shared/utils/
 WORKDIR /app/packages/apps/modular-monolith
 RUN deno cache main.ts
-
-FROM denoland/deno:alpine
-WORKDIR /app
-COPY --from=builder /app .
-WORKDIR /app/packages/apps/modular-monolith
 EXPOSE 8000
 CMD ["deno", "run", "--allow-net", "--allow-env", "main.ts"]
