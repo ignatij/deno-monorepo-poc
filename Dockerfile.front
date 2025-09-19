@@ -1,0 +1,13 @@
+# Stage 1 : build React with Deno
+FROM denoland/deno:alpine AS react-build
+WORKDIR /app
+COPY packages/shared/domain/ ./packages/shared/domain/
+COPY packages/apps/front/ ./packages/apps/front/
+COPY . .
+RUN deno install
+WORKDIR /app/packages/apps/front
+RUN deno task build
+
+# Stage 2 : runtime
+FROM nginx:alpine
+COPY --from=react-build /app/packages/apps/front/dist /usr/share/nginx/html

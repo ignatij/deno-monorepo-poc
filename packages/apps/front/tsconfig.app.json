@@ -21,7 +21,11 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "paths": {
+      "@deno-monorepo-poc/domain": ["../../shared/domain/lib.ts"]
+    }
   },
   "include": ["src"]
 }

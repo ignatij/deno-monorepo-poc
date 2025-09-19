@@ -103,7 +103,7 @@ CMD ["deno", "run", "--allow-net", "--allow-env", "main.ts"]
 From workspace root:
 
 ```
-docker build -f modular-monolith-dockerfile -t modular-monolith:latest .
+docker build -f Dockerfile.modular-monolith -t modular-monolith:latest .
 ```
 
 ### front
@@ -113,7 +113,8 @@ docker build -f modular-monolith-dockerfile -t modular-monolith:latest .
 ```
 
 ```
-docker build -f front-dockerfile -t front:latest .
+docker build -f Dockerfile.front -t front:latest .
+docker run front:latest -p 8080:80
 ```
 
 ## Official documentation
