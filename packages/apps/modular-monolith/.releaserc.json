@@ -9,7 +9,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "deno run -A scripts/update_version.js ${nextRelease.version}"
+          "prepareCmd": "deno run -A scripts/update_version.ts ${nextRelease.version}"
         }
       ],
       [
