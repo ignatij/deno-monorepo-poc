@@ -87,7 +87,7 @@ jobs:
         if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
         run: |
           cd packages/apps/front
-          npm ci
+          npm ci --legacy-peer-deps
 
       - name: Run linter
         run: deno lint
