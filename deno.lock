@@ -27,6 +27,7 @@
     "npm:typescript-eslint@^8.43.0": "8.44.0_eslint@9.35.0_typescript@5.8.3_@typescript-eslint+parser@8.44.0__eslint@9.35.0__typescript@5.8.3",
     "npm:typescript@5.8.3": "5.8.3",
     "npm:typescript@~5.8.3": "5.8.3",
+    "npm:vite@*": "7.1.6_picomatch@4.0.3",
     "npm:vite@7.1.6": "7.1.6_picomatch@4.0.3",
     "npm:vite@^7.1.6": "7.1.6_picomatch@4.0.3"
   },
