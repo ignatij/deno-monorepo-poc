@@ -4,7 +4,7 @@ import express, { Request, Response } from "express";
 const app = express();
 
 app.get("/", (_: Request, res: Response) => {
-  const result = add(5, 3);
+  const result = add(4, 3);
   res.send(`Welcome to this very useful API: the result is ${result}`);
 });
 
