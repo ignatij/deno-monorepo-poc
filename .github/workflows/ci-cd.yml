@@ -161,7 +161,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd packages/apps/front
-          npm ci
+          npm ci --legacy-peer-deps
 
       - name: Run semantic-release frontend
         run: |
