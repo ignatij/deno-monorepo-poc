@@ -14,5 +14,6 @@
     "pino": "npm:pino@^10.0.0",
     "semantic-release": "npm:semantic-release@^24.2.9",
     "express": "npm:express@^5.1.0"
-  }
+  },
+  "version": "1.0.0"
 }
