@@ -1,8 +1,6 @@
-import fs from 'node:fs';
-import process from 'node:process';
-
-const version = process.argv[2];
-const json = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const file = "deno.json";
+const version = Deno.args[0];
+const json = JSON.parse(await Deno.readTextFile(file));
 json.version = version;
-fs.writeFileSync('package.json', JSON.stringify(json, null, 2));
-console.log(`✅ Updated package.json to ${version}`);
+await Deno.writeTextFile(file, JSON.stringify(json, null, 2));
+console.log(`✅ Updated deno.json to ${version}`);
