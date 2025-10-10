@@ -1,3 +1,11 @@
+## [0.0.4](https://github.com/ignatij/deno-monorepo-poc/compare/v0.0.3-modular-monolith...v0.0.4-modular-monolith) (2025-10-10)
+
+
+### Bug Fixes
+
+* rename script ([79310d2](https://github.com/ignatij/deno-monorepo-poc/commit/79310d2aa335a70d0db66249a4a00cf4b586423c))
+* trigger release ([8f48996](https://github.com/ignatij/deno-monorepo-poc/commit/8f48996e49a79d8c310bcc9aa5405b3fb15a5e4a))
+
 ## [0.0.3](https://github.com/ignatij/deno-monorepo-poc/compare/v0.0.2-modular-monolith...v0.0.3-modular-monolith) (2025-10-10)
 
 
