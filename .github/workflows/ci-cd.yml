@@ -10,7 +10,7 @@ on:
     branches: ["main"]
 
 permissions:
-  contents: write  # For semantic-release
+  contents: write # For semantic-release
 
 jobs:
   detect-changes:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Need full history for semantic-release
+          fetch-depth: 0 # Need full history for semantic-release
 
       - name: Detect changes
         id: changes
@@ -38,10 +38,10 @@ jobs:
             CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
             echo "Main branch mode: Comparing against previous commit"
           fi
-          
+
           echo "Changed files:"
           echo "$CHANGED_FILES"
-          
+
           # Check for backend changes (modular-monolith + shared packages)
           if echo "$CHANGED_FILES" | grep -E "^packages/apps/modular-monolith/|^packages/shared/"; then
             echo "backend_changed=true" >> $GITHUB_OUTPUT
@@ -50,7 +50,7 @@ jobs:
             echo "backend_changed=false" >> $GITHUB_OUTPUT
             echo "No backend changes detected"
           fi
-          
+
           # Check for frontend changes
           if echo "$CHANGED_FILES" | grep -E "^packages/apps/front/"; then
             echo "frontend_changed=true" >> $GITHUB_OUTPUT
@@ -76,38 +76,40 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: packages/apps/front/package-lock.json
+
+      - name: Install frontend dependencies
+        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
+        run: |
+          cd packages/apps/front
+          npm ci
+
       - name: Run linter
         run: deno lint
 
       - name: Run tests
         run: deno test -A
 
-      - name: Build backend (if changed)
+      - name: Build backend
         if: needs.detect-changes.outputs.backend-changed == 'true'
         run: |
           cd packages/apps/modular-monolith
           deno task build
 
-      - name: Build frontend (if changed)
-        if: needs.detect-changes.outputs.frontend-changed == 'true'
+      - name: Build frontend
+        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
         run: |
           cd packages/apps/front
           npm run build
 
-      - name: Docker build backend
-        if: needs.detect-changes.outputs.backend-changed == 'true'
-        run: |
-          docker build -f Dockerfile.modular-monolith --platform linux/amd64 -t modular-monolith:latest .
-
-      - name: Docker build frontend
-        if: needs.detect-changes.outputs.frontend-changed == 'true'
-        run: |
-          docker build -f Dockerfile.front --platform linux/amd64 -t front:latest .
-
-  semantic-release:
+  semantic-release-backend:
     needs: [detect-changes, test-and-build]
     runs-on: ubuntu-latest
-    # Only run on main branch AND when backend changes are detected
     if: github.ref == 'refs/heads/main' && needs.detect-changes.outputs.backend-changed == 'true'
     permissions:
       contents: write
@@ -126,9 +128,73 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: Run semantic-release
+      - name: Run semantic-release backend
         run: |
           cd packages/apps/modular-monolith
           deno task semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  semantic-release-frontend:
+    needs: [detect-changes, test-and-build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && (needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true')
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: packages/apps/front/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd packages/apps/front
+          npm ci
+
+      - name: Run semantic-release frontend
+        run: |
+          cd packages/apps/front
+          npm run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker-build:
+    needs:
+      [
+        detect-changes,
+        test-and-build,
+        semantic-release-backend,
+        semantic-release-frontend,
+      ]
+    runs-on: ubuntu-latest
+    if: always() && (needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true')
+    permissions:
+      contents: read
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Docker build backend
+        if: needs.detect-changes.outputs.backend-changed == 'true'
+        run: |
+          docker build -f Dockerfile.modular-monolith --platform linux/amd64 -t modular-monolith:latest .
+
+      - name: Docker build frontend
+        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
+        run: |
+          docker build -f Dockerfile.front --platform linux/amd64 -t front:latest .
