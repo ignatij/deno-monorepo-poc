@@ -10,23 +10,71 @@ on:
     branches: ["main"]
 
 permissions:
-  contents: read
+  contents: write  # For semantic-release
 
 jobs:
-  test-and-build:
+  detect-changes:
     runs-on: ubuntu-latest
+    outputs:
+      backend-changed: ${{ steps.changes.outputs.backend_changed }}
+      frontend-changed: ${{ steps.changes.outputs.frontend_changed }}
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for semantic-release
+
+      - name: Detect changes
+        id: changes
+        run: |
+          # Handle both PR and main branch scenarios
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # For PRs, compare against the base branch
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
+            echo "PR mode: Comparing against base branch"
+          else
+            # For main branch (squashed commits), compare against the merge base
+            # This handles the case where a squashed commit contains multiple changes
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+            echo "Main branch mode: Comparing against previous commit"
+          fi
+          
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+          
+          # Check for backend changes (modular-monolith + shared packages)
+          if echo "$CHANGED_FILES" | grep -E "^packages/apps/modular-monolith/|^packages/shared/"; then
+            echo "backend_changed=true" >> $GITHUB_OUTPUT
+            echo "Backend changes detected"
+          else
+            echo "backend_changed=false" >> $GITHUB_OUTPUT
+            echo "No backend changes detected"
+          fi
+          
+          # Check for frontend changes
+          if echo "$CHANGED_FILES" | grep -E "^packages/apps/front/"; then
+            echo "frontend_changed=true" >> $GITHUB_OUTPUT
+            echo "Frontend changes detected"
+          else
+            echo "frontend_changed=false" >> $GITHUB_OUTPUT
+            echo "No frontend changes detected"
+          fi
+
+  test-and-build:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
 
     steps:
       - name: Setup repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2 # https://github.com/denoland/setup-deno
+        uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-
-      #   - name: Verify formatting
-      #     run: deno fmt --check
 
       - name: Run linter
         run: deno lint
@@ -34,7 +82,53 @@ jobs:
       - name: Run tests
         run: deno test -A
 
-      - name: Docker build
+      - name: Build backend (if changed)
+        if: needs.detect-changes.outputs.backend-changed == 'true'
+        run: |
+          cd packages/apps/modular-monolith
+          deno task build
+
+      - name: Build frontend (if changed)
+        if: needs.detect-changes.outputs.frontend-changed == 'true'
+        run: |
+          cd packages/apps/front
+          npm run build
+
+      - name: Docker build backend
+        if: needs.detect-changes.outputs.backend-changed == 'true'
         run: |
           docker build -f Dockerfile.modular-monolith --platform linux/amd64 -t modular-monolith:latest .
+
+      - name: Docker build frontend
+        if: needs.detect-changes.outputs.frontend-changed == 'true'
+        run: |
           docker build -f Dockerfile.front --platform linux/amd64 -t front:latest .
+
+  semantic-release:
+    needs: [detect-changes, test-and-build]
+    runs-on: ubuntu-latest
+    # Only run on main branch AND when backend changes are detected
+    if: github.ref == 'refs/heads/main' && needs.detect-changes.outputs.backend-changed == 'true'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Run semantic-release
+        run: |
+          cd packages/apps/modular-monolith
+          deno task semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
