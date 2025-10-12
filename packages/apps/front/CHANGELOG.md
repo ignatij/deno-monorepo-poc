@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/ignatij/deno-monorepo-poc/compare/v0.3.3-front...v0.4.0-front) (2025-10-12)
+
+
+### Features
+
+* add subtract operation ([e89078a](https://github.com/ignatij/deno-monorepo-poc/commit/e89078aac0fd51b557abf6e774c846d5475ec9b9))
+
 ## [0.3.3](https://github.com/ignatij/deno-monorepo-poc/compare/v0.3.2-front...v0.3.3-front) (2025-10-12)
 
 
