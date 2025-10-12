@@ -220,23 +220,25 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Extract backend version
-      - name: Get backend version
+      - name: Get backend version and name
         if: needs.detect-changes.outputs.backend-changed == 'true'
         id: backend-version
         run: |
           VERSION=$(cat packages/apps/modular-monolith/deno.json | jq -r '.version')
+          NAME=$(cat packages/apps/modular-monolith/deno.json | jq -r '.name')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Backend version: $VERSION"
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "Backend version: $VERSION, name: $NAME"
 
-      # Extract frontend version
-      - name: Get frontend version
-        if: needs.detect-changes.outputs.frontend-changed == 'true'
+      - name: Get frontend version and name
+        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
         id: frontend-version
         run: |
           VERSION=$(cat packages/apps/front/package.json | jq -r '.version')
+          NAME=$(cat packages/apps/front/package.json | jq -r '.name')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Frontend version: $VERSION"
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "Frontend version: $VERSION, name: $NAME"
 
       - name: Build and push backend
         if: needs.detect-changes.outputs.backend-changed == 'true'
@@ -244,12 +246,12 @@ jobs:
         with:
           context: .
           file: ./Dockerfile.modular-monolith
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/modular-monolith:latest
-            ghcr.io/${{ github.repository }}/modular-monolith:${{ github.sha }}
-            ghcr.io/${{ github.repository }}/modular-monolith:v${{ steps.backend-version.outputs.version }}
+            ghcr.io/${{ github.repository }}/${{ steps.backend-version.outputs.name }}:latest
+            ghcr.io/${{ github.repository }}/${{ steps.backend-version.outputs.name }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}/${{ steps.backend-version.outputs.name }}:v${{ steps.backend-version.outputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -259,11 +261,11 @@ jobs:
         with:
           context: .
           file: ./Dockerfile.front
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/front:latest
-            ghcr.io/${{ github.repository }}/front:${{ github.sha }}
-            ghcr.io/${{ github.repository }}/front:v${{ steps.frontend-version.outputs.version }}
+            ghcr.io/${{ github.repository }}/${{ steps.frontend-version.outputs.name }}:latest
+            ghcr.io/${{ github.repository }}/${{ steps.frontend-version.outputs.name }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}/${{ steps.frontend-version.outputs.name }}:v${{ steps.frontend-version.outputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
