@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/ignatij/deno-monorepo-poc/compare/v0.4.1-front...v0.4.2-front) (2025-10-12)
+
+
+### Bug Fixes
+
+* back to initial version in app.tsx ([c6b3c2b](https://github.com/ignatij/deno-monorepo-poc/commit/c6b3c2b41d909a5e72d78457011d1fbe77791365))
+
 ## [0.4.1](https://github.com/ignatij/deno-monorepo-poc/compare/v0.4.0-front...v0.4.1-front) (2025-10-12)
 
 
