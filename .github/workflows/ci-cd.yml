@@ -193,7 +193,9 @@ jobs:
         semantic-release-frontend,
       ]
     runs-on: ubuntu-latest
-    if: always() && (needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true')
+    if: always() &&
+      github.ref == 'refs/heads/main' &&
+      (needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true')
     permissions:
       contents: read
       packages: write
