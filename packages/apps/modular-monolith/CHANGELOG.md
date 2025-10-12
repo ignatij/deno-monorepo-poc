@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/ignatij/deno-monorepo-poc/compare/v0.1.0-modular-monolith...v0.1.1-modular-monolith) (2025-10-12)
+
+
+### Bug Fixes
+
+* remove subtract op ([00c4575](https://github.com/ignatij/deno-monorepo-poc/commit/00c4575534e2f954e2baaf31da859fb5d9044275))
+
 # [0.1.0](https://github.com/ignatij/deno-monorepo-poc/compare/v0.0.4-modular-monolith...v0.1.0-modular-monolith) (2025-10-12)
 
 
