@@ -42,8 +42,15 @@ jobs:
           echo "Changed files:"
           echo "$CHANGED_FILES"
 
+           # Check for shared packages changes
+          SHARED_CHANGED=false
+          if echo "$CHANGED_FILES" | grep -E "^packages/shared/"; then
+            SHARED_CHANGED=true
+            echo "Shared packages changed - both backend and frontend will be affected"
+          fi
+
           # Check for backend changes (modular-monolith + shared packages)
-          if echo "$CHANGED_FILES" | grep -E "^packages/apps/modular-monolith/|^packages/shared/"; then
+          if echo "$CHANGED_FILES" | grep -E "^packages/apps/modular-monolith/" || [ "$SHARED_CHANGED" = true ]; then
             echo "backend_changed=true" >> $GITHUB_OUTPUT
             echo "Backend changes detected"
           else
@@ -51,8 +58,8 @@ jobs:
             echo "No backend changes detected"
           fi
 
-          # Check for frontend changes
-          if echo "$CHANGED_FILES" | grep -E "^packages/apps/front/"; then
+          # Check for frontend changes (front app + shared packages)
+          if echo "$CHANGED_FILES" | grep -E "^packages/apps/front/" || [ "$SHARED_CHANGED" = true ]; then
             echo "frontend_changed=true" >> $GITHUB_OUTPUT
             echo "Frontend changes detected"
           else
@@ -102,7 +109,7 @@ jobs:
           deno task build
 
       - name: Build frontend
-        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
+        if: needs.detect-changes.outputs.frontend-changed == 'true'
         run: |
           cd packages/apps/front
           npm run build
@@ -138,7 +145,7 @@ jobs:
   semantic-release-frontend:
     needs: [detect-changes, test-and-build]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && (needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true')
+    if: github.ref == 'refs/heads/main' && needs.detect-changes.outputs.frontend-changed == 'true'
     permissions:
       contents: write
       issues: write
@@ -211,11 +218,12 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/modular-monolith:latest
             ghcr.io/${{ github.repository }}/modular-monolith:${{ github.sha }}
+            ghcr.io/${{ github.repository }}/modular-monolith:v$(cat packages/apps/modular-monolith/deno.json | jq -r '.version')
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Build and push frontend
-        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
+        if: needs.detect-changes.outputs.frontend-changed == 'true'
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -225,5 +233,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/front:latest
             ghcr.io/${{ github.repository }}/front:${{ github.sha }}
+            ghcr.io/${{ github.repository }}/front:v$(cat packages/apps/front/package.json | jq -r '.version')
           cache-from: type=gha
           cache-to: type=gha,mode=max
