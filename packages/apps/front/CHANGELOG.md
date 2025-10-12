@@ -1,3 +1,15 @@
+# [0.1.0](https://github.com/ignatij/deno-monorepo-poc/compare/v0.0.1-front...v0.1.0-front) (2025-10-12)
+
+
+### Bug Fixes
+
+* trigger release ([8f48996](https://github.com/ignatij/deno-monorepo-poc/commit/8f48996e49a79d8c310bcc9aa5405b3fb15a5e4a))
+
+
+### Features
+
+* add subtract operation ([0ae532b](https://github.com/ignatij/deno-monorepo-poc/commit/0ae532be6bea9782d2b3e136386214218aef952a))
+
 ## [0.0.1](https://github.com/ignatij/deno-monorepo-poc/compare/v0.0.0-front...v0.0.1-front) (2025-10-10)
 
 
