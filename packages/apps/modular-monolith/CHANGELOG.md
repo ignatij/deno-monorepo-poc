@@ -1,3 +1,10 @@
+## [0.1.4](https://github.com/ignatij/deno-monorepo-poc/compare/v0.1.3-modular-monolith...v0.1.4-modular-monolith) (2025-10-12)
+
+
+### Bug Fixes
+
+* rollback to prev result ([16a7b77](https://github.com/ignatij/deno-monorepo-poc/commit/16a7b77fc95a25edf80e2cc359db27fe6c4d0ddb))
+
 ## [0.1.3](https://github.com/ignatij/deno-monorepo-poc/compare/v0.1.2-modular-monolith...v0.1.3-modular-monolith) (2025-10-12)
 
 
