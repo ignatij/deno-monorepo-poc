@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/ignatij/deno-monorepo-poc/compare/v0.1.0-front...v0.2.0-front) (2025-10-12)
+
+
+### Features
+
+* remove extract op ([59f843d](https://github.com/ignatij/deno-monorepo-poc/commit/59f843d3152eb0f88a28278b500a7f470bd7e37e))
+
 # [0.1.0](https://github.com/ignatij/deno-monorepo-poc/compare/v0.0.1-front...v0.1.0-front) (2025-10-12)
 
 
