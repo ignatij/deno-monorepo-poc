@@ -1,3 +1,10 @@
+## [0.3.3](https://github.com/ignatij/deno-monorepo-poc/compare/v0.3.2-front...v0.3.3-front) (2025-10-12)
+
+
+### Bug Fixes
+
+* remove subtract operation ([3573134](https://github.com/ignatij/deno-monorepo-poc/commit/35731342c0e0e61345cfff33f1bc92c44ada0780))
+
 ## [0.3.2](https://github.com/ignatij/deno-monorepo-poc/compare/v0.3.1-front...v0.3.2-front) (2025-10-12)
 
 
