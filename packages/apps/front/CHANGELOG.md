@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/ignatij/deno-monorepo-poc/compare/v0.3.1-front...v0.3.2-front) (2025-10-12)
+
+
+### Bug Fixes
+
+* add diff result ([4099b1d](https://github.com/ignatij/deno-monorepo-poc/commit/4099b1d49619655fb800e83bba1fdb3c5d184797))
+* modify front ([73c35a2](https://github.com/ignatij/deno-monorepo-poc/commit/73c35a23a33f85bff54bd8ef257372ab17898ab2))
+* rollback to prev result ([16a7b77](https://github.com/ignatij/deno-monorepo-poc/commit/16a7b77fc95a25edf80e2cc359db27fe6c4d0ddb))
+
 ## [0.3.1](https://github.com/ignatij/deno-monorepo-poc/compare/v0.3.0-front...v0.3.1-front) (2025-10-12)
 
 
