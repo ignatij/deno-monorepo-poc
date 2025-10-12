@@ -229,7 +229,7 @@ jobs:
 
       # Extract frontend version
       - name: Get frontend version
-        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
+        if: needs.detect-changes.outputs.frontend-changed == 'true'
         id: frontend-version
         run: |
           VERSION=$(cat packages/apps/front/package.json | jq -r '.version')
@@ -252,7 +252,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Build and push frontend
-        if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
+        if: needs.detect-changes.outputs.frontend-changed == 'true'
         uses: docker/build-push-action@v5
         with:
           context: .
