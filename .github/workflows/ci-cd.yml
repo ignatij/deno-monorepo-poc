@@ -225,20 +225,24 @@ jobs:
         id: backend-version
         run: |
           VERSION=$(cat packages/apps/modular-monolith/deno.json | jq -r '.version')
-          NAME=$(cat packages/apps/modular-monolith/deno.json | jq -r '.name')
+          FULL_NAME=$(cat packages/apps/modular-monolith/deno.json | jq -r '.name')
+          # Remove scope prefix (e.g., @deno-monorepo-poc/)
+          NAME=$(echo "$FULL_NAME" | sed 's/@[^/]*\///')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "name=$NAME" >> $GITHUB_OUTPUT
-          echo "Backend version: $VERSION, name: $NAME"
+          echo "Backend version: $VERSION, name: $NAME (from: $FULL_NAME)"
 
       - name: Get frontend version and name
         if: needs.detect-changes.outputs.backend-changed == 'true' || needs.detect-changes.outputs.frontend-changed == 'true'
         id: frontend-version
         run: |
           VERSION=$(cat packages/apps/front/package.json | jq -r '.version')
-          NAME=$(cat packages/apps/front/package.json | jq -r '.name')
+          FULL_NAME=$(cat packages/apps/front/package.json | jq -r '.name')
+          # Remove scope prefix (e.g., @deno-monorepo-poc/)
+          NAME=$(echo "$FULL_NAME" | sed 's/@[^/]*\///')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "name=$NAME" >> $GITHUB_OUTPUT
-          echo "Frontend version: $VERSION, name: $NAME"
+          echo "Frontend version: $VERSION, name: $NAME (from: $FULL_NAME)"
 
       - name: Build and push backend
         if: needs.detect-changes.outputs.backend-changed == 'true'
