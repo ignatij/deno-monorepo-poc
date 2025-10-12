@@ -143,9 +143,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   semantic-release-frontend:
-    needs: [detect-changes, test-and-build]
+    needs: [detect-changes, test-and-build, semantic-release-backend]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && needs.detect-changes.outputs.frontend-changed == 'true'
+    if: always()
+      && github.ref == 'refs/heads/main'
+      && needs.detect-changes.outputs.frontend-changed == 'true'
     permissions:
       contents: write
       issues: write
