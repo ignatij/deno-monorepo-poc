@@ -2,7 +2,7 @@ import "./App.css";
 import { add } from "@deno-monorepo-poc/domain";
 
 const App: React.FunctionComponent = () => {
-  const a = 2;
+  const a = 1;
 
   const b = 1;
 
