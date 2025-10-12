@@ -160,6 +160,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Pull latest changes from backend release
+        run: |
+          git pull origin main
+          git log -1 --pretty=format:"%H %s"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
