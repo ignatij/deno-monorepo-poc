@@ -1,4 +1,6 @@
 {
+  "name": "@deno-monorepo-poc/modular-monolith",
+  "version": "0.1.5",
   "tasks": {
     "dev": "deno run --allow-net --watch main.ts",
     "build": "deno compile --allow-net --output dist/modular-monolith main.ts",
@@ -14,6 +16,5 @@
     "pino": "npm:pino@^10.0.0",
     "semantic-release": "npm:semantic-release@^24.2.9",
     "express": "npm:express@^5.1.0"
-  },
-  "version": "0.1.5"
+  }
 }
