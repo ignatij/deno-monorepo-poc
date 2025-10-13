@@ -4,16 +4,18 @@
 
 1. Create the directory: `packages/shared/<name>`
 
-2. If `<name>` is not under `packages/apps` or `packages/shared`, update `deno.json`'s `workspace` attribute (currently: `"workspace": ["./packages/shared/*", "./packages/apps/*"],`)
+2. If `<name>` is not under `packages/apps` or `packages/shared`, update
+   `deno.json`'s `workspace` attribute (currently:
+   `"workspace": ["./packages/shared/*", "./packages/apps/*"],`)
 
 3. `cd packages/shared/<name>` && `deno init`
 
 4. Complete `deno.json` with the following:
 
 ```
-  "name": "@deno-monorepo-poc/<name>",
-  "version": "0.1.0",
-  "exports": "./lib.ts",
+"name": "@deno-monorepo-poc/<name>",
+"version": "0.1.0",
+"exports": "./lib.ts",
 ```
 
 ## Working within a specific package
@@ -45,7 +47,9 @@ import { add } from "@deno-monorepo-poc/domain";
 
 ## Building a React application
 
-`build` doesn't make sense for most packages (libraries, Express application etc.), since TypeScript is native in Deno. However, it does for React applications:
+`build` doesn't make sense for most packages (libraries, Express application
+etc.), since TypeScript is native in Deno. However, it does for React
+applications:
 
 Requires [`deno-vite-plugin`](https://github.com/denoland/deno-vite-plugin)
 
