@@ -1,6 +1,6 @@
 {
   "name": "@deno-monorepo-poc/modular-monolith",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "exports": "./main.ts",
   "tasks": {
     "dev": "deno run --allow-net --allow-env --allow-read --env-file --watch main.ts",
