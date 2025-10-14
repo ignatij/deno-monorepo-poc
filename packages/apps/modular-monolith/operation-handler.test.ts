@@ -13,7 +13,7 @@ Deno.test("operation handler with multiply feature disabled", () => {
   assertEquals(
     result,
     8,
-    "Should return sum without multiplication (5 + 3 = 8)"
+    "Should return sum without multiplication (5 + 3 = 8)",
   );
 });
 
@@ -29,6 +29,6 @@ Deno.test("operation handler with multiply feature enabled", () => {
   assertEquals(
     result,
     16,
-    "Should return sum multiplied by 2 ((5 + 3) * 2 = 16)"
+    "Should return sum multiplied by 2 ((5 + 3) * 2 = 16)",
   );
 });

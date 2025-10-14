@@ -1,3 +1,12 @@
+.app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,15 +14,95 @@
   text-align: center;
 }
 
+/* Feature flag debug panel */
+.feature-debug {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  text-align: left;
+}
+
+.feature-debug h3 {
+  margin-top: 0;
+  color: var(--text-primary);
+}
+
+/* UI Renderer Styles */
+.legacy-ui,
+.modern-ui {
+  padding: 2em;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  margin: 1em 0;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.legacy-ui {
+  border-left: 4px solid #888;
+}
+
+.modern-ui {
+  border-left: 4px solid var(--accent-primary);
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary) 0%,
+    var(--bg-tertiary) 100%
+  );
+}
+
+.modern-ui h1 {
+  background: linear-gradient(135deg, var(--accent-primary), #61dafb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Theme toggle indicator */
+.theme-indicator {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5em 1em;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+/* Card styles */
+.card {
+  padding: 2em;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin: 1em 0;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+/* Logo animations */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em var(--accent-primary));
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -33,10 +122,13 @@
   }
 }
 
-.card {
-  padding: 2em;
+.read-the-docs {
+  color: var(--text-muted);
 }
 
-.read-the-docs {
-  color: #888;
+/* Smooth theme transition */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }
