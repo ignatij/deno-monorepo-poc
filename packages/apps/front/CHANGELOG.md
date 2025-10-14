@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.0...front-v1.0.1) (2025-10-14)
+
+
+### Bug Fixes
+
+* modify a ([905c186](https://github.com/ignatij/deno-monorepo-poc/commit/905c186800ebbe3b50acfb11888c36ad7a32a21b))
+
 # 1.0.0 (2025-10-13)
 
 
