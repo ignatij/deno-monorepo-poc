@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.2...front-v1.0.3) (2025-10-14)
+
+
+### Bug Fixes
+
+* use dark mode for production ([d155b83](https://github.com/ignatij/deno-monorepo-poc/commit/d155b83d613b12375d9d057c6b5c89bf49507599))
+
 ## [1.0.2](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.1...front-v1.0.2) (2025-10-14)
 
 
