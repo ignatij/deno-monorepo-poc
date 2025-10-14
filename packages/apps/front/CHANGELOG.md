@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.1...front-v1.0.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* trigger release ([42c94a9](https://github.com/ignatij/deno-monorepo-poc/commit/42c94a9b08f9d44b82b79d8dde87fa8b78bf176e))
+
 ## [1.0.1](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.0...front-v1.0.1) (2025-10-14)
 
 ### Bug Fixes
