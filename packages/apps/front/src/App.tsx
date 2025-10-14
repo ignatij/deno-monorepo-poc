@@ -5,7 +5,7 @@ import { createFeatureAwareFactory } from "./feature-aware-factory.ts";
 
 const App: React.FunctionComponent = () => {
   const a = 1;
-  const b = 1;
+  const b = 2;
   const c = add(a, b);
 
   // Create factory with current feature flags
