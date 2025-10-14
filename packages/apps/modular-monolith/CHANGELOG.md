@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.0...modular-monolith-v1.0.1) (2025-10-14)
+
+
+### Bug Fixes
+
+* modify a ([905c186](https://github.com/ignatij/deno-monorepo-poc/commit/905c186800ebbe3b50acfb11888c36ad7a32a21b))
+* rollback App.tsx ([1f81b4a](https://github.com/ignatij/deno-monorepo-poc/commit/1f81b4a381a298a1649f73f6e24d4e71bb1c679c))
+
 # 1.0.0 (2025-10-13)
 
 ### Bug Fixes
