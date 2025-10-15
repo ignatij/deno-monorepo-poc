@@ -1,3 +1,14 @@
+## [1.0.5](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.4...modular-monolith-v1.0.5) (2025-10-15)
+
+### Bug Fixes
+
+- add multiply op - triggering release
+  ([0f868de](https://github.com/ignatij/deno-monorepo-poc/commit/0f868deef83fb1652e585ea021d655e7c9d8d275))
+- remove useless stmt
+  ([0d32f6a](https://github.com/ignatij/deno-monorepo-poc/commit/0d32f6a7386e3b8902f354ed73d74983ce889e13))
+- remove useless stmt on modular-monolith
+  ([43b6a63](https://github.com/ignatij/deno-monorepo-poc/commit/43b6a637f87136e8c30fc718a75be20f0fedc70c))
+
 ## [1.0.4](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.3...modular-monolith-v1.0.4) (2025-10-15)
 
 ### Bug Fixes
