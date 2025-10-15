@@ -104,13 +104,11 @@ jobs:
       - name: Build backend
         if: needs.detect-changes.outputs.backend-changed == 'true'
         run: |
-          cd packages/apps/modular-monolith
           pnpm run build:backend
 
       - name: Build frontend
         if: needs.detect-changes.outputs.frontend-changed == 'true'
         run: |
-          cd packages/apps/front
           pnpm run build:front
 
   semantic-release-backend:
