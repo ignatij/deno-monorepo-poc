@@ -13,6 +13,7 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "@deno-monorepo-poc/domain": "workspace:*",
     "@deno/vite-plugin": "^1.0.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
