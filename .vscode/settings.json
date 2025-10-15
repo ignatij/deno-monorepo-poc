@@ -1,3 +1,17 @@
 {
-  "deno.enable": true
+  "deno.enable": true,
+  "deno.enablePaths": [
+    "./packages/apps/modular-monolith",
+    "./packages/shared/domain",
+    "./packages/shared/utils"
+  ],
+  "deno.disablePaths": ["./packages/apps/front"],
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
 }

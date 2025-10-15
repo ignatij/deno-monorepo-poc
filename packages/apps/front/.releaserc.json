@@ -9,7 +9,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "node scripts/update_version.js ${nextRelease.version}"
+        "prepareCmd": "node scripts/update_version.js ${nextRelease.version} && npx prettier --write package.json CHANGELOG.md"
       }
     ],
     [

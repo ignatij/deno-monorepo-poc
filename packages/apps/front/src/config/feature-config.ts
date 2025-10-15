@@ -17,7 +17,7 @@ export class FeatureConfig {
   static getInstance(): FeatureConfig {
     if (!FeatureConfig.instance) {
       throw new Error(
-        "FeatureConfig not initialized. Call FeatureConfig.initialize() first."
+        "FeatureConfig not initialized. Call FeatureConfig.initialize() first.",
       );
     }
     return FeatureConfig.instance;

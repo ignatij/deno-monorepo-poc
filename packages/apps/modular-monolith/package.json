@@ -5,6 +5,7 @@
     "postinstall": "deno install",
     "lint": "deno task lint",
     "test": "deno test -A",
-    "build": "deno task build"
+    "build": "deno task build",
+    "fmt": "deno fmt"
   }
 }

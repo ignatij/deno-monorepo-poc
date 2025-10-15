@@ -14,7 +14,7 @@
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
     "clean": "rm -rf node_modules packages/*/node_modules packages/*/*/node_modules",
-    "fmt": "deno fmt"
+    "fmt": "pnpm -r fmt"
   },
   "devDependencies": {
     "pnpm": "^10.18.3"
