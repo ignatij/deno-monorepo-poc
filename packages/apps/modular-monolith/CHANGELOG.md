@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.1...modular-monolith-v1.0.2) (2025-10-15)
+
+
+### Bug Fixes
+
+* trigger release ([42c94a9](https://github.com/ignatij/deno-monorepo-poc/commit/42c94a9b08f9d44b82b79d8dde87fa8b78bf176e))
+* use dark mode for production ([d155b83](https://github.com/ignatij/deno-monorepo-poc/commit/d155b83d613b12375d9d057c6b5c89bf49507599))
+
 ## [1.0.1](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.0...modular-monolith-v1.0.1) (2025-10-14)
 
 ### Bug Fixes
