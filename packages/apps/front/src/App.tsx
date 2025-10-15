@@ -1,7 +1,10 @@
 import "./App.css";
 import { add } from "@deno-monorepo-poc/domain";
-import { featureConfig } from "./config/feature-config.ts";
+import { FeatureConfig } from "./config/feature-config.ts";
 import { createFeatureAwareFactory } from "./feature-aware-factory.ts";
+
+await FeatureConfig.initialize();
+const config = await FeatureConfig.getInstance().getFeatureFlags();
 
 const App: React.FunctionComponent = () => {
   const a = 1;
@@ -9,7 +12,7 @@ const App: React.FunctionComponent = () => {
   const c = add(a, b);
 
   // Create factory with current feature flags
-  const factory = createFeatureAwareFactory(featureConfig.getFeatureFlags());
+  const factory = createFeatureAwareFactory(config);
   const uiRenderer = factory.uiRenderer();
   const theme = factory.getTheme();
 
@@ -38,7 +41,7 @@ const App: React.FunctionComponent = () => {
       {/* Debug panel - show all features */}
       <details className="feature-debug">
         <summary>🔧 Feature Flags</summary>
-        <pre>{JSON.stringify(featureConfig.getFeatureFlags(), null, 2)}</pre>
+        <pre>{JSON.stringify(config, null, 2)}</pre>
       </details>
     </div>
   );

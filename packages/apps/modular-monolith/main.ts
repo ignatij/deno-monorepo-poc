@@ -1,11 +1,14 @@
 import express, { type Request, type Response } from "express";
+import { FeatureConfig } from "./config/feature-config.ts";
 import { createFeatureAwareFactory } from "./feature-aware-factory.ts";
-import { featureConfig } from "./config/feature-config.ts";
 
 const app = express();
 
+await FeatureConfig.initialize();
+const config = await FeatureConfig.getInstance().getFeatureFlags();
+
 // Initialize with feature decisions from config
-const factory = createFeatureAwareFactory(featureConfig.getFeatureFlags());
+const factory = createFeatureAwareFactory(config);
 
 app.get("/", (_: Request, res: Response) => {
   const result = factory.operationHandler().add(5, 3);
@@ -15,7 +18,7 @@ app.get("/", (_: Request, res: Response) => {
 app.get("/health", (_: Request, res: Response) => {
   res.json({
     status: "healthy",
-    features: featureConfig.getFeatureFlags(),
+    features: config,
   });
 });
 
