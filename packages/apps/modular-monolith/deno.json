@@ -18,6 +18,7 @@
     "@semantic-release/release-notes-generator": "npm:@semantic-release/release-notes-generator@^14.1.0",
     "pino": "npm:pino@^10.0.0",
     "semantic-release": "npm:semantic-release@^24.2.9",
-    "express": "npm:express@^5.1.0"
+    "express": "npm:express@^5.1.0",
+    "@types/express": "npm:@types/express@^5.0.1"
   }
 }
