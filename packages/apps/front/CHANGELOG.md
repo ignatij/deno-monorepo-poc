@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.3...front-v1.0.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* remove subtract not used function ([a3e2023](https://github.com/ignatij/deno-monorepo-poc/commit/a3e2023e2279f726f2ad78e5464c342fe242a202))
+
 ## [1.0.3](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.2...front-v1.0.3) (2025-10-14)
 
 ### Bug Fixes
