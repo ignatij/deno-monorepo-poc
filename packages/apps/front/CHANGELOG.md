@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.4...front-v1.0.5) (2025-10-15)
+
+
+### Bug Fixes
+
+* use async approach for feature flags ([5989cd8](https://github.com/ignatij/deno-monorepo-poc/commit/5989cd8a87c0f19e25d8811f7f08df7a54e2f88d))
+
 ## [1.0.4](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.3...front-v1.0.4) (2025-10-15)
 
 
