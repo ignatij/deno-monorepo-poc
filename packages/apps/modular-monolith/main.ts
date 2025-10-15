@@ -5,7 +5,7 @@ import { createFeatureAwareFactory } from "./feature-aware-factory.ts";
 const app = express();
 
 await FeatureConfig.initialize();
-const config = await FeatureConfig.getInstance().getFeatureFlags();
+const config = FeatureConfig.getInstance().getFeatureFlags();
 
 // Initialize with feature decisions from config
 const factory = createFeatureAwareFactory(config);
