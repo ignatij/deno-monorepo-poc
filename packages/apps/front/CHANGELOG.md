@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.5...front-v1.0.6) (2025-10-15)
+
+### Bug Fixes
+
+- add multiply op - triggering release
+  ([0f868de](https://github.com/ignatij/deno-monorepo-poc/commit/0f868deef83fb1652e585ea021d655e7c9d8d275))
+
 ## [1.0.5](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.4...front-v1.0.5) (2025-10-15)
 
 ### Bug Fixes
