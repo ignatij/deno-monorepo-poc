@@ -1,10 +1,10 @@
 FROM denoland/deno:alpine
 WORKDIR /app
-COPY deno.json .
 COPY packages/apps/modular-monolith/ ./packages/apps/modular-monolith/
 COPY packages/shared/domain/ ./packages/shared/domain/
 COPY packages/shared/utils/ ./packages/shared/utils/
 WORKDIR /app/packages/apps/modular-monolith
+RUN deno install
 RUN deno cache main.ts
 EXPOSE 8000
-CMD ["deno", "run", "--allow-net", "--allow-env", "main.ts"]
+CMD ["deno", "run", "--allow-net", "--allow-env", "--allow-read", "main.ts"]
