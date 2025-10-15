@@ -1,0 +1,10 @@
+{
+  "name": "@deno-monorepo-poc/modular-monolith",
+  "type": "module",
+  "scripts": {
+    "postinstall": "deno install",
+    "lint": "deno task lint",
+    "test": "deno test -A",
+    "build": "deno task build"
+  }
+}

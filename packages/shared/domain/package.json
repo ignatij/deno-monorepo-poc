@@ -1,0 +1,10 @@
+{
+  "name": "@deno-monorepo-poc/domain",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./lib.ts"
+  },
+  "files": ["*.ts"],
+  "peerDependencies": {}
+}

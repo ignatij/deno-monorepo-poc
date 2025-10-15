@@ -1,0 +1,22 @@
+{
+  "name": "deno-monorepo-poc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deno monorepo with pnpm workspaces",
+  "scripts": {
+    "dev:backend": "cd packages/apps/modular-monolith && deno task dev",
+    "dev:front": "pnpm --filter @deno-monorepo-poc/front dev",
+    "build:backend": "cd packages/apps/modular-monolith && deno task build",
+    "build:front": "pnpm --filter @deno-monorepo-poc/front build",
+    "build:all": "pnpm -r build",
+    "test:backend": "cd packages/apps/modular-monolith && deno test -A",
+    "test:front": "pnpm --filter @deno-monorepo-poc/front test",
+    "test:all": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/*/node_modules",
+    "fmt": "deno fmt"
+  },
+  "devDependencies": {
+    "pnpm": "^10.18.3"
+  }
+}
