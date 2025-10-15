@@ -1,14 +1,35 @@
-# Stage 1 : build React with Deno
-FROM denoland/deno:alpine AS react-build
-WORKDIR /app
-COPY packages/shared/domain/ ./packages/shared/domain/
-COPY packages/apps/front/ ./packages/apps/front/
-COPY packages/apps/front/.env.production ./packages/apps/front/.env.production
-COPY . .
-RUN deno install
-WORKDIR /app/packages/apps/front
-RUN deno task build
+# Stage 1: Build React with pnpm and Node.js
+FROM node:22-alpine AS react-build
 
-# Stage 2 : runtime
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@10.18.3 --activate
+
+WORKDIR /app
+
+# Copy workspace configuration
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+
+# Copy package.json files for dependency resolution
+COPY packages/apps/front/package.json ./packages/apps/front/
+COPY packages/shared/domain/package.json ./packages/shared/domain/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile --filter @deno-monorepo-poc/front
+
+# Copy source code
+COPY packages/apps/front/ ./packages/apps/front/
+COPY packages/shared/domain/ ./packages/shared/domain/
+
+# Build the frontend
+WORKDIR /app/packages/apps/front
+RUN pnpm run build
+
+# Stage 2: Runtime with nginx
 FROM nginx:alpine
+
+# Copy built static files
 COPY --from=react-build /app/packages/apps/front/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
