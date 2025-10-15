@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.6...front-v1.0.7) (2025-10-15)
+
+### Bug Fixes
+
+- remove useless stmt
+  ([0d32f6a](https://github.com/ignatij/deno-monorepo-poc/commit/0d32f6a7386e3b8902f354ed73d74983ce889e13))
+
 ## [1.0.6](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.5...front-v1.0.6) (2025-10-15)
 
 ### Bug Fixes
