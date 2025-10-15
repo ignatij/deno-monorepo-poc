@@ -4,7 +4,7 @@ import { FeatureConfig } from "./config/feature-config.ts";
 import { createFeatureAwareFactory } from "./feature-aware-factory.ts";
 
 await FeatureConfig.initialize();
-const config = await FeatureConfig.getInstance().getFeatureFlags();
+const config = FeatureConfig.getInstance().getFeatureFlags();
 
 const App: React.FunctionComponent = () => {
   const a = 1;
