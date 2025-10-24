@@ -1,3 +1,20 @@
+## [1.2.0](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.1.1...front-v1.2.0) (2025-10-24)
+
+### Features
+
+* **modular-monolith:** increase ([15d6bb3](https://github.com/ignatij/deno-monorepo-poc/commit/15d6bb3a28b59097e67f09faa41ec2eeb5831d31))
+* **modular-monolith:** increase ([48bb9f3](https://github.com/ignatij/deno-monorepo-poc/commit/48bb9f332512a3d5c93acfd4f32b3b805db72e04))
+
+### Bug Fixes
+
+* exclude node script ([b97522f](https://github.com/ignatij/deno-monorepo-poc/commit/b97522f0264bb4a6255fcb408c966244a7f0b49d))
+* **front:** fix ([47ecd10](https://github.com/ignatij/deno-monorepo-poc/commit/47ecd10e7cf5d042d5dd16bf804ba4b071d94d94))
+* improve release config ([4b43927](https://github.com/ignatij/deno-monorepo-poc/commit/4b439277b8d5057457564e3af1d34e53ac3fcd08))
+* improve release script ([091989a](https://github.com/ignatij/deno-monorepo-poc/commit/091989a0ca8706ced572933f34f77da1b75b940f))
+* **modular-monolith:** fix backend ([0018008](https://github.com/ignatij/deno-monorepo-poc/commit/001800857ec442522df1b1fd7b39eef9f2e82376))
+* remove semantic release monorepo ([6d76c08](https://github.com/ignatij/deno-monorepo-poc/commit/6d76c08004d9272ea27f42fc14e419551d366bee))
+* update backend ([b153d90](https://github.com/ignatij/deno-monorepo-poc/commit/b153d9007487b5fa4fed292595d6ecacdd0614cb))
+
 ## [1.1.1](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.1.0...front-v1.1.1) (2025-10-24)
 
 
