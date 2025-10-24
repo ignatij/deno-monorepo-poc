@@ -3,7 +3,21 @@
   "branches": ["main"],
   "tagFormat": "front-v${version}",
   "plugins": [
-    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          { "type": "feat", "scope": "front", "release": "minor" },
+          { "type": "fix", "scope": "front", "release": "patch" },
+          { "type": "feat", "scope": "shared", "release": "minor" },
+          { "type": "fix", "scope": "shared", "release": "patch" }
+        ],
+        "parserOpts": {
+          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
+        }
+      }
+    ],
     "@semantic-release/release-notes-generator",
     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
     [
@@ -15,7 +29,7 @@
     [
       "@semantic-release/git",
       {
-        "assets": ["package.json", "CHANGELOG.md"],
+        "assets": ["package.json", "CHANGELOG.md", "README.md"],
         "message": "chore(release): frontend ${nextRelease.version} [skip ci]"
       }
     ]
