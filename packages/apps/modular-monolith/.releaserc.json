@@ -3,29 +3,14 @@
   "branches": ["main"],
   "tagFormat": "modular-monolith-v${version}",
   "plugins": [
-    [
-      "@semantic-release/commit-analyzer",
-      {
-        "releaseRules": [
-          { "type": "feat", "scope": "modular-monolith", "release": "minor" },
-          { "type": "fix", "scope": "modular-monolith", "release": "patch" },
-          { "type": "perf", "scope": "modular-monolith", "release": "patch" },
-          { "type": "revert", "scope": "modular-monolith", "release": "patch" },
-          { "type": "refactor", "scope": "modular-monolith", "release": "patch" },
-          { "type": "docs", "scope": "modular-monolith", "release": false },
-          { "type": "style", "scope": "modular-monolith", "release": false },
-          { "type": "chore", "scope": "modular-monolith", "release": false },
-          { "type": "test", "scope": "modular-monolith", "release": false },
-          { "type": "build", "scope": "modular-monolith", "release": false },
-          { "type": "ci", "scope": "modular-monolith", "release": false },
-          { "type": "feat", "scope": "shared", "release": "minor" },
-          { "type": "fix", "scope": "shared", "release": "patch" }
-        ],
-        "parserOpts": {
-          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
-        }
-      }
-    ],
+    ["@semantic-release/commit-analyzer", {
+      "preset": "conventionalcommits",
+      "releaseRules": [
+        {"scope": "modular-monolith", "release": "minor"},
+        {"scope": "front", "release": false},
+        {"type": "docs", "release": false}
+      ]
+    }],
     "@semantic-release/release-notes-generator",
     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
     [
