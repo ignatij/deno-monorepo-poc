@@ -1,6 +1,6 @@
 {
   "branches": ["main"],
-  "tagFormat": "monolith-v${version}",
+  "tagFormat": "modular-monolith-v${version}",
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
