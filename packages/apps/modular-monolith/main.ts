@@ -11,7 +11,7 @@ const config = FeatureConfig.getInstance().getFeatureFlags();
 const factory = createFeatureAwareFactory(config);
 
 app.get("/", (_: Request, res: Response) => {
-  const result = factory.operationHandler().add(3, 3);
+  const result = factory.operationHandler().add(4, 3);
   res.send(`Welcome to this very useful API: the result is ${result}`);
 });
 
