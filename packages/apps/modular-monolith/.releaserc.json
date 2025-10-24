@@ -1,3 +1,17 @@
 {
-  "extends": "semantic-release-monorepo"
+  "repositoryUrl": "https://github.com/ignatij/deno-monorepo-poc",
+  "branches": ["main"],
+  "tagFormat": "modular-monolith-v${version}",
+  "extends": "semantic-release-monorepo",
+  "plugins": [
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["deno.json", "CHANGELOG.md", "README.md"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
+      }
+    ]
+  ]
 }
