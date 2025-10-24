@@ -2,15 +2,8 @@
   "repositoryUrl": "https://github.com/ignatij/deno-monorepo-poc",
   "branches": ["main"],
   "tagFormat": "modular-monolith-v${version}",
+  "extends": "semantic-release-monorepo",
   "plugins": [
-    ["@semantic-release/commit-analyzer", {
-      "preset": "conventionalcommits",
-      "releaseRules": [
-        {"scope": "modular-monolith", "release": "minor"},
-        {"scope": "front", "release": false},
-        {"type": "docs", "release": false}
-      ]
-    }],
     "@semantic-release/release-notes-generator",
     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
     [

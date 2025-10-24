@@ -17,7 +17,7 @@
     "@semantic-release/git": "npm:@semantic-release/git@^10.0.1",
     "@semantic-release/release-notes-generator": "npm:@semantic-release/release-notes-generator@^14.1.0",
     "semantic-release": "npm:semantic-release@^24.2.9",
-    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "semantic-release-monorepo": "npm:semantic-release-monorepo@^8.0.2",
     "pino": "npm:pino@^10.0.0",
     "express": "npm:express@^5.1.0",
     "@types/express": "npm:@types/express@^5.0.1"

@@ -7,5 +7,9 @@
     "test": "deno test -A",
     "build": "deno task build",
     "fmt": "deno fmt"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.9",
+    "semantic-release-monorepo": "^8.0.2"
   }
 }
