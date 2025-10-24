@@ -6,23 +6,20 @@
     [
       "@semantic-release/commit-analyzer",
       {
-        "preset": "angular",
         "releaseRules": [
           { "type": "feat", "scope": "front", "release": "minor" },
           { "type": "fix", "scope": "front", "release": "patch" },
+          { "type": "perf", "scope": "front", "release": "patch" },
+          { "type": "revert", "scope": "front", "release": "patch" },
+          { "type": "refactor", "scope": "front", "release": "patch" },
+          { "type": "docs", "scope": "front", "release": false },
+          { "type": "style", "scope": "front", "release": false },
+          { "type": "chore", "scope": "front", "release": false },
+          { "type": "test", "scope": "front", "release": false },
+          { "type": "build", "scope": "front", "release": false },
+          { "type": "ci", "scope": "front", "release": false },
           { "type": "feat", "scope": "shared", "release": "minor" },
-          { "type": "fix", "scope": "shared", "release": "patch" },
-          { "type": "feat", "release": "minor" },
-          { "type": "fix", "release": "patch" },
-          { "type": "perf", "release": "patch" },
-          { "type": "revert", "release": "patch" },
-          { "type": "docs", "release": false },
-          { "type": "style", "release": false },
-          { "type": "chore", "release": false },
-          { "type": "refactor", "release": "patch" },
-          { "type": "test", "release": false },
-          { "type": "build", "release": false },
-          { "type": "ci", "release": false }
+          { "type": "fix", "scope": "shared", "release": "patch" }
         ],
         "parserOpts": {
           "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
