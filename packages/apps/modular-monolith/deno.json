@@ -21,5 +21,8 @@
     "pino": "npm:pino@^10.0.0",
     "express": "npm:express@^5.1.0",
     "@types/express": "npm:@types/express@^5.0.1"
+  },
+  "lint": {
+    "exclude": ["scripts/release.js"]
   }
 }
