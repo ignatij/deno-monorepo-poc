@@ -146,7 +146,7 @@ jobs:
 
       - name: Run semantic-release backend
         run: |
-          pnpm -r --workspace-concurrency=1 exec -- npx --no-install semantic-release -e semantic-release-monorepo
+          pnpm --filter modular-monolith release:modular-monolith
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

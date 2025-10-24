@@ -6,7 +6,8 @@
     "lint": "deno task lint",
     "test": "deno test -A",
     "build": "deno task build",
-    "fmt": "deno fmt"
+    "fmt": "deno fmt",
+    "release:modular-monolith": "node scripts/release.js"
   },
   "devDependencies": {
     "semantic-release": "^24.2.9",

@@ -4,14 +4,26 @@
   "tagFormat": "modular-monolith-v${version}",
   "extends": "semantic-release-monorepo",
   "plugins": [
-    "@semantic-release/release-notes-generator",
-    ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
     [
-      "@semantic-release/git",
+      "@semantic-release/commit-analyzer",
       {
-        "assets": ["deno.json", "CHANGELOG.md", "README.md"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]"
+        "preset": "conventionalcommits",
+        "presetConfig": {
+          "path": "conventional-changelog-conventionalcommits"
+        }
       }
-    ]
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "presetConfig": {
+          "path": "conventional-changelog-conventionalcommits"
+        }
+      }
+    ],
+    "@semantic-release/npm",
+    "@semantic-release/git",
+    "@semantic-release/github"
   ]
 }
