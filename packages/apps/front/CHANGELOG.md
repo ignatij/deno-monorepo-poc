@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.8...front-v1.1.0) (2025-10-24)
+
+### Bug Fixes
+
+- **front:** use different number
+  ([df6c9b0](https://github.com/ignatij/deno-monorepo-poc/commit/df6c9b03bc50539a9150693944db10031b6caec0))
+
+### Features
+
+- **modular-monolith:** increment
+  ([9bee46b](https://github.com/ignatij/deno-monorepo-poc/commit/9bee46bb16dd53b97eb0a35aa5f59214b3c8accc))
+
 ## [1.0.8](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.7...front-v1.0.8) (2025-10-24)
 
 ### Bug Fixes
