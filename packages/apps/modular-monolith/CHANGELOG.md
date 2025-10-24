@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.5...modular-monolith-v1.1.0) (2025-10-24)
+
+### Features
+
+- **modular-monolith:** increment
+  ([9bee46b](https://github.com/ignatij/deno-monorepo-poc/commit/9bee46bb16dd53b97eb0a35aa5f59214b3c8accc))
+
 ## [1.0.5](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.0.4...modular-monolith-v1.0.5) (2025-10-15)
 
 ### Bug Fixes
