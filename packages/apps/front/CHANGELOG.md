@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.7...front-v1.0.8) (2025-10-24)
+
+### Bug Fixes
+
+- remove useless stmt on modular-monolith
+  ([43b6a63](https://github.com/ignatij/deno-monorepo-poc/commit/43b6a637f87136e8c30fc718a75be20f0fedc70c))
+
 ## [1.0.7](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.0.6...front-v1.0.7) (2025-10-15)
 
 ### Bug Fixes
