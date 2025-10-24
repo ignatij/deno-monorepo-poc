@@ -132,6 +132,9 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Run semantic-release backend
         run: |
           cd packages/apps/modular-monolith
