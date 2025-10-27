@@ -1,3 +1,14 @@
+## [1.4.2](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.4.1...front-v1.4.2) (2025-10-27)
+
+### Features
+
+* **modular-monolith:** update ([482673b](https://github.com/ignatij/deno-monorepo-poc/commit/482673bd0ba833b1d2af0e3550d0a85d192586c6))
+
+### Bug Fixes
+
+* bring back deno ([2b8ec26](https://github.com/ignatij/deno-monorepo-poc/commit/2b8ec2670c9ca92b3b0f5b0e38e4d8dfef66da3a))
+* **front:** fix ([5c0d2ec](https://github.com/ignatij/deno-monorepo-poc/commit/5c0d2ec0334278ccf7d973931ad4827fef80e2c7))
+
 ## [1.4.1](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.4.0...front-v1.4.1) (2025-10-27)
 
 ### Bug Fixes
