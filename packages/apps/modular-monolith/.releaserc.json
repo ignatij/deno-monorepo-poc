@@ -10,7 +10,8 @@
           { "scope": "modular-monolith", "type": "feat", "release": "minor" },
           { "scope": "modular-monolith", "type": "fix", "release": "patch" },
           { "scope": "modular-monolith", "type": "perf", "release": "patch" },
-          { "scope": "modular-monolith", "breaking": true, "release": "major" }
+          { "scope": "modular-monolith", "breaking": true, "release": "major" },
+          { "release": false }
         ]
       }
     ],

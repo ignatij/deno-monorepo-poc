@@ -10,7 +10,8 @@
           { "scope": "front", "type": "feat", "release": "minor" },
           { "scope": "front", "type": "fix", "release": "patch" },
           { "scope": "front", "type": "perf", "release": "patch" },
-          { "scope": "front", "breaking": true, "release": "major" }
+          { "scope": "front", "breaking": true, "release": "major" },
+          { "release": false }
         ]
       }
     ],
