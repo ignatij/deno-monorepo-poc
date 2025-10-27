@@ -1,3 +1,16 @@
+## [1.3.0](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.2.0...modular-monolith-v1.3.0) (2025-10-27)
+
+### Features
+
+* **modular-monolith:** update ([4d457c2](https://github.com/ignatij/deno-monorepo-poc/commit/4d457c21bd3ae996c07b629049549856b70fd16f))
+* **modular-monolith:** update ([af19896](https://github.com/ignatij/deno-monorepo-poc/commit/af198967ec04a1059e4b2474d5b4016ee6b5fed1))
+* **modular-monolith:** update ([79a3695](https://github.com/ignatij/deno-monorepo-poc/commit/79a3695fe2a579e7b2394da33cb769fce5aa55cb))
+
+### Bug Fixes
+
+* **front:** fix ([47ecd10](https://github.com/ignatij/deno-monorepo-poc/commit/47ecd10e7cf5d042d5dd16bf804ba4b071d94d94))
+* update package path ([00a150c](https://github.com/ignatij/deno-monorepo-poc/commit/00a150cf4b059be312658c2b0525726e726fbaff))
+
 ## [1.2.0](https://github.com/ignatij/deno-monorepo-poc/compare/modular-monolith-v1.1.0...modular-monolith-v1.2.0) (2025-10-24)
 
 ### Features
