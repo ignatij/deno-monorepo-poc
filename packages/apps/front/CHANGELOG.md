@@ -1,3 +1,19 @@
+## [1.3.0](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.2.0...front-v1.3.0) (2025-10-27)
+
+### Features
+
+* **modular-monolith:** update ([4d457c2](https://github.com/ignatij/deno-monorepo-poc/commit/4d457c21bd3ae996c07b629049549856b70fd16f))
+* **modular-monolith:** update ([af19896](https://github.com/ignatij/deno-monorepo-poc/commit/af198967ec04a1059e4b2474d5b4016ee6b5fed1))
+* **modular-monolith:** update ([79a3695](https://github.com/ignatij/deno-monorepo-poc/commit/79a3695fe2a579e7b2394da33cb769fce5aa55cb))
+
+### Bug Fixes
+
+* **front:** fix ([fe9a7e4](https://github.com/ignatij/deno-monorepo-poc/commit/fe9a7e4b52862853a71cebc714cc363de6de15e7))
+* **front:** fix ([571c53f](https://github.com/ignatij/deno-monorepo-poc/commit/571c53f40b02383d0b34f777a61ea26bbbdf1a04))
+* **front:** fix ([dbd2405](https://github.com/ignatij/deno-monorepo-poc/commit/dbd240520ee5903ab34829aded40d2753c06bed8))
+* **front:** fix script ([bcdd282](https://github.com/ignatij/deno-monorepo-poc/commit/bcdd282b7f20b167b4942d5c2a8fa72a34316658))
+* update package path ([00a150c](https://github.com/ignatij/deno-monorepo-poc/commit/00a150cf4b059be312658c2b0525726e726fbaff))
+
 ## [1.2.0](https://github.com/ignatij/deno-monorepo-poc/compare/front-v1.1.1...front-v1.2.0) (2025-10-24)
 
 ### Features
