@@ -1,25 +1,28 @@
 #!/usr/bin/env node
 import { execSync } from "child_process";
 import semanticRelease from "semantic-release";
+import conventionalCommits from "conventional-changelog-conventionalcommits"; // important
+import commitAnalyzer from "@semantic-release/commit-analyzer";
+import releaseNotesGenerator from "@semantic-release/release-notes-generator";
+import changelog from "@semantic-release/changelog";
+import npmPlugin from "@semantic-release/npm";
+import gitPlugin from "@semantic-release/git";
 
-const packagePath = "."; // or relative path from repo root if needed
-const packageTagPrefix = "front-v";
+const packageName = "front";
+const packagePath = ".";
+const tagPrefix = `${packageName}-v`;
 
-// 1. Get last tag for this package
+// --- Step 1: Find the last tag for this package
 let lastTag = "";
 try {
-  lastTag = execSync(
-    `git describe --tags --match "${packageTagPrefix}*" --abbrev=0`,
-  )
+  lastTag = execSync(`git describe --tags --match "${tagPrefix}*" --abbrev=0`)
     .toString()
     .trim();
 } catch {
-  console.log(
-    `No previous ${packageTagPrefix} tag found, releasing from start`,
-  );
+  console.log(`No previous ${tagPrefix} tag found, releasing from start.`);
 }
 
-// 2. Collect commits affecting only this package (since last tag)
+// --- Step 2: Check for commits affecting this package
 let commits = "";
 try {
   commits = execSync(
@@ -34,36 +37,46 @@ try {
 }
 
 if (!commits) {
-  console.log("No commits in front package since last release, skipping.");
+  console.log(`No commits in ${packageName} since last release, skipping.`);
   process.exit(0);
 }
 
-// 3. Run semantic-release limited to those commits only
-process.env.GIT_COMMIT_FILTER = commits.split("\n").join(" ");
-
+// --- Step 3: Run semantic-release programmatically
 const result = await semanticRelease({
   ci: true,
-  config: `${packagePath}/.releaserc.json`,
-  // 👇 Force semantic-release to only consider filtered commits
-  // (we'll monkey-patch its `analyzeCommits` plugin input)
+  branches: ["main"],
+  tagFormat: `${tagPrefix}${"${version}"}`,
   plugins: [
     [
-      "@semantic-release/commit-analyzer",
+      commitAnalyzer,
       {
         preset: "conventionalcommits",
         releaseRules: [
-          { scope: "front", type: "feat", release: "minor" },
-          { scope: "front", type: "fix", release: "patch" },
-          { scope: "front", type: "perf", release: "patch" },
-          { scope: "front", breaking: true, release: "major" },
+          { scope: packageName, type: "feat", release: "minor" },
+          { scope: packageName, type: "fix", release: "patch" },
+          { scope: packageName, type: "perf", release: "patch" },
+          { scope: packageName, breaking: true, release: "major" },
         ],
         parserOpts: { noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"] },
       },
     ],
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
-    "@semantic-release/npm",
-    "@semantic-release/git",
+    [
+      releaseNotesGenerator,
+      {
+        preset: "conventionalcommits",
+        config: conventionalCommits,
+      },
+    ],
+    [changelog, { changelogFile: "CHANGELOG.md" }],
+    [npmPlugin, { npmPublish: false }],
+    [
+      gitPlugin,
+      {
+        assets: ["CHANGELOG.md", "package.json"],
+        message:
+          "chore(release): ${nextRelease.version} [skip ci]\\n\\n${nextRelease.notes}",
+      },
+    ],
   ],
 });
 
@@ -71,5 +84,5 @@ if (!result) {
   console.log("No release triggered by semantic-release.");
   process.exit(0);
 } else {
-  console.log(`Released front version ${result.nextRelease.version}`);
+  console.log(`Released ${packageName} version ${result.nextRelease.version}`);
 }
