@@ -127,11 +127,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
@@ -146,7 +141,7 @@ jobs:
 
       - name: Run semantic-release backend
         run: |
-          pnpm --filter modular-monolith release:modular-monolith
+          pnpm --filter modular-monolith release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
