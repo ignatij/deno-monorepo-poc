@@ -2,7 +2,7 @@
 import { execSync } from "child_process";
 import semanticRelease from "semantic-release";
 
-const packagePath = "packages/apps/front";
+const packagePath = ".";
 
 // get last front tag
 let lastTag = "";

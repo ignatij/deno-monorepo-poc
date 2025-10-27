@@ -7,7 +7,7 @@ await FeatureConfig.initialize();
 const config = FeatureConfig.getInstance().getFeatureFlags();
 
 const App: React.FunctionComponent = () => {
-  const a = 1;
+  const a = 2;
   const b = 2;
   const c = add(a, b);
 
