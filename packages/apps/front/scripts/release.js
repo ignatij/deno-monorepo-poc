@@ -2,33 +2,50 @@
 import { execSync } from "child_process";
 import semanticRelease from "semantic-release";
 
+const packageName = "front";
 const packagePath = ".";
 
-// get last front tag
+// find last tag for this package
 let lastTag = "";
 try {
-  lastTag = execSync('git describe --tags --match "front-v*" --abbrev=0').toString().trim();
+  lastTag = execSync(
+    `git describe --tags --match "${packageName}-v*" --abbrev=0`,
+  )
+    .toString()
+    .trim();
 } catch {
-  console.log("No previous front tag found, releasing from start");
+  console.log(`No previous ${packageName} tag found, releasing from start.`);
 }
 
-// check if any files changed in front package since last tag
-const diff = execSync(`git diff --name-only ${lastTag || ""} HEAD ${packagePath}`).toString().trim();
+// get commits that touched this package
+const commits = execSync(
+  `git log ${lastTag ? `${lastTag}..HEAD` : ""} --pretty=format:%H -- ${packagePath}`,
+)
+  .toString()
+  .trim()
+  .split("\n")
+  .filter(Boolean);
 
-if (!diff) {
-  console.log("No changes in front, skipping release.");
+if (commits.length === 0) {
+  console.log(`No commits affecting ${packageName}, skipping release.`);
   process.exit(0);
 }
 
-// run semantic-release
-const result = await semanticRelease({
-  ci: true,
-  config: `${packagePath}/release.config.json`
-});
+// run semantic-release using only these commits
+const env = { ...process.env };
+env.SEMANTIC_RELEASE_COMMITS = commits.join(",");
+
+const result = await semanticRelease(
+  {
+    ci: true,
+    config: `${packagePath}/release.config.json`,
+  },
+  { env },
+);
 
 if (!result) {
   console.log("No release triggered by semantic-release.");
   process.exit(0);
 } else {
-  console.log(`Released front version ${result.nextRelease.version}`);
+  console.log(`Released ${packageName} version ${result.nextRelease.version}`);
 }
