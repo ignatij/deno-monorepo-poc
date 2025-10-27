@@ -187,8 +187,7 @@ jobs:
 
       - name: Run semantic-release frontend
         run: |
-          cd packages/apps/front
-          pnpm run semantic-release
+          pnpm --filter front release:front
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
