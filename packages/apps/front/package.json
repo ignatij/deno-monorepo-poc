@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "tsc": "tsc -b",
     "vite": "vite build",
-    "release": "node scripts/release.js",
+    "release": "npx semantic-release",
     "fmt": "prettier --write ."
   },
   "dependencies": {
