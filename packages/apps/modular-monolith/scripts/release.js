@@ -4,7 +4,7 @@ import semanticRelease from "semantic-release";
 
 const packagePath = ".";
 
-// get last tag
+// get last modular-monolith tag
 let lastTag = "";
 try {
   lastTag = execSync(
@@ -16,12 +16,11 @@ try {
   console.log("No previous modular-monolith tag found, releasing from start");
 }
 
-// check if any files changed in modular monolith package since last tag
-const diff = execSync(
-  `git diff --name-only ${lastTag || ""} HEAD ${packagePath}`
-)
-  .toString()
-  .trim();
+// check if any files changed in modular-monolith package since last tag
+const diffCmd = lastTag
+  ? `git diff --name-only ${lastTag} HEAD ${packagePath}`
+  : `git diff --name-only HEAD ${packagePath}`;
+const diff = execSync(diffCmd).toString().trim();
 
 if (!diff) {
   console.log("No changes in modular-monolith, skipping release.");
@@ -31,7 +30,7 @@ if (!diff) {
 // run semantic-release
 const result = await semanticRelease({
   ci: true,
-  config: `${packagePath}/release.config.json`,
+  config: `${packagePath}/.releaserc.json`,
 });
 
 if (!result) {
