@@ -8,7 +8,7 @@ const config = FeatureConfig.getInstance().getFeatureFlags();
 
 const App: React.FunctionComponent = () => {
   const a = 3;
-  const b = 2;
+  const b = 3;
   const c = add(a, b);
 
   // Create factory with current feature flags
