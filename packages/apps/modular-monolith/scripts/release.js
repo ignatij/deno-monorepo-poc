@@ -2,7 +2,7 @@
 import { execSync } from "child_process";
 import semanticRelease from "semantic-release";
 
-const packagePath = "packages/apps/modular-monolith";
+const packagePath = ".";
 
 // get last tag
 let lastTag = "";
